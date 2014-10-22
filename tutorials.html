@@ -174,12 +174,12 @@
 <nav class="chapter-toc">
 <h1>Contents</h1>
 <ul>
-<li><a class="gweb-smoothscroll-control qp-ui" data-qp-ui="{ &#39;SmoothScroll&#39;: {} }" href="http://graphenerom.github.io/#features" data-qp-ui-data-id="qp:e">Features</a></li>
+<li><a class="gweb-smoothscroll-control qp-ui" data-qp-ui="{ &#39;SmoothScroll&#39;: {} }" href="http://graphenerom.github.io/#setup" data-qp-ui-data-id="qp:e">Getting Started with Building</a></li>
 <li><a class="gweb-smoothscroll-control qp-ui" data-qp-ui="{ &#39;SmoothScroll&#39;: {} }" href="https://graphenerom.github.io/#optimizations" data-qp-ui-data-id="qp:f">Optimizations</a></li>
 </ul>
 </nav>
 <div class="article-list">
-<div id="features" class="article qp-ui" data-qp-ui="{ &#39;ScrollSpy&#39;: {} }" data-qp-ui-data-id="qp:g">
+<div id="setup" class="article qp-ui" data-qp-ui="{ &#39;ScrollSpy&#39;: {} }" data-qp-ui-data-id="qp:g">
 <h2 class="article-title qp-ui" data-qp-ui="{ &#39;ResponsiveZippy&#39;: {} }" data-qp-ui-data-id="qp:h">
 Key Features
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="icon icon-expand-collapse" role="img" viewBox="0 0 10 10" aria-labelledby="title desc">
@@ -192,8 +192,150 @@ Key Features
 <div class="module-list">
 <div id="goals-goals-1">
 <section class="moduleE1">
-<div class="caption-title"><b>Active Display</div></b>
-Using the proximity sensor, your device will detect when it is in your pocket and not turn on the display when you recieve a notification. When you take your device out of your pocket, the display will automatically turn on to alert you of notifications without you having to do a thing. Thanks to ChameleonOS, Active dsplay has been modified to use less battery and a special notification screen to use the least battery as possible.
+<div class="caption-title">
+Step 1:
+    install 64-bit linux.  you MUST have 64-bit linux and at least 4 GB ram. You may be able to build with less but you will have a serious amount of swap which will slow you down hellishly.  If you're interested in speeding up your build time consider buying an SSD, then CPU, then more RAM.  an SSD will speed up your process 10x, especially with ccache.  I suggest installing the most recent version of either Ubuntu or Mint.  You're on your own for this step.
+     
+    preliminary linux users:
+    part 1:  make sure you've set up your computer and familiarized yourself with basic linux commands such as navigating the terminal, copying files, sudo, rm, ls, diff, apt-get, update-alternative, gedit and other basic useful commands.  you may want to make yourself a cheatsheet as your desktop wallpaper until you get used to it if you're new
+     
+    part 2:  before you install anything, you will want to run a few commands that will align your version of linux with the latest repositories and kernel updates available to unbuntu.
+     
+    sudo apt-get update
+    sudo apt-get upgrade
+     
+     
+     
+Step 2: Oracle Java SE JDK version 6.XX
+    The build environment:
+    The first part of setting up a build environment is installing the correct java package.  with ubuntu/mint openJDK is included and the android build process set this as incompatible.  I modified our build process to except building with openJDK which would be acceptable for testing purposes only but not for publishing anything.
+     
+    You will need oracle JDK 6.  get the latest version here:
+    http://www.webupd8.org/2012/11/oracle-sun-java-6-installer-available.html
+    scroll down to java SE 6 update ___ fill in the blank for latest.
+    download the latest 64-bit version for ubuntu.
+     
+run these commands to install:  
+    (notice 6uXX and 1.6.0_XX means 6u37 or 1.6.0_37 if that's the version you downloaded)
+     
+    sudo chmod a+x ~/Downloads/jdk-6uXX-linux-x64.bin
+    sudo cp ~/Downloads/jdk-6u30-linux-x64.bin /usr/lib
+    cd /usr/lib
+    sudo ./jdk-6uXX-linux-x64.bin
+    sudo mv /usr/lib/jdk1.6.0_XX/ /usr/lib/jvm/
+     
+now it's time to "switch" to oracle java:
+    run this command and see how many other versions of java are available for use. you will want to take note of the number on the left.  reenter the number that is in use for now.
+       
+    sudo update-alternatives ––config java
+     
+    run this command and input one number greater than what was available in the previous command at the end of the string. you will need to change the XX again to the version number you downloaded. notice i have placed a 2 at the end becuase open JDK was already installed.
+   
+    cd into /usr/lib/jvm/jdk1.6.0_XX (the one you just installed)  
+    sudo update-alternatives ––install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_XX/jre/bin/java 2
+     
+Create symbolic links for the new java files (again XX is your downloaded version)
+     
+    cd /usr/bin
+    sudo ln -s /usr/lib/jvm/jdk1.6.0_XX/bin/javac
+    sudo ln -s /usr/lib/jvm/jdk1.6.0_XX/bin/jar
+    sudo ln -s /usr/lib/jvm/jdk1.6.0_XX/bin/javadoc
+     
+    If you run into problems with the symbolic links already being here you can just delete them and run the commands to recreate them
+     
+     
+     
+Step 3: GCC-Linaro compiler 4.7.2 - *note* this does not mean it's a "Linaro" build. I'm including this step in the advent we start using more forward tool chains.
+     
+    Type this command to see which version you are running:
+    gcc -v
+     
+    if you do not have GCC 4.7.2 (latest at the time of this writing)
+    sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+    sudo apt-get update
+    sudo apt-get install gcc-4.7
+    sudo update-alternatives --config gcc
+     
+     
+     
+Step 4: Installing necessary packages
+     
+    sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs x11proto-core-dev libx11-dev lib32readline-gplv2-dev lib32z-dev libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils xsltproc pngcrush
+     
+    sudo apt-get install libx11-dev:i386
+    sudo ln -s /usr/lib/i386-linux-gnu/libX11.so.6 /usr/lib/i386-linux-gnu/libX11.so
+     
+     
+     
+Step 5: Configuring ADB access
+     
+    sudo touch /etc/udev/rules.d/51-android.rules
+    sudo gedit /etc/udev/rules.d/51-android.rules
+     
+    copy the following into the empty gedit you've just created replacing username with your user name.  Mine is PrimeDirective so it looks like <PrimeDirective>.
+    # adb protocol on passion (Nexus One) SUBSYSTEM==”usb”, ATTR{idVendor}==”18d1″, ATTR{idProduct}==”4e12″, MODE=”0600″, OWNER=”<username>” # fastboot protocol on passion (Nexus One) SUBSYSTEM==”usb”, ATTR{idVendor}==”0bb4″, ATTR{idProduct}==”0fff”, MODE=”0600″, OWNER=”<username>” # adb protocol on crespo/crespo4g (Nexus S) SUBSYSTEM==”usb”, ATTR{idVendor}==”18d1″, ATTR{idProduct}==”4e22″, MODE=”0600″, OWNER=”<username>” # fastboot protocol on crespo/crespo4g (Nexus S) SUBSYSTEM==”usb”, ATTR{idVendor}==”18d1″, ATTR{idProduct}==”4e20″, MODE=”0600″, OWNER=”<username>” # adb protocol on stingray/wingray (Xoom) SUBSYSTEM==”usb”, ATTR{idVendor}==”22b8″, ATTR{idProduct}==”70a9″, MODE=”0600″, OWNER=”<username>” # fastboot protocol on stingray/wingray (Xoom) SUBSYSTEM==”usb”, ATTR{idVendor}==”18d1″, ATTR{idProduct}==”708c”, MODE=”0600″, OWNER=”<username>” # adb protocol on maguro/toro (Galaxy Nexus) SUBSYSTEM==”usb”, ATTR{idVendor}==”04e8″, ATTR{idProduct}==”6860″, MODE=”0600″, OWNER=”<username>” # fastboot protocol on maguro/toro (Galaxy Nexus) SUBSYSTEM==”usb”, ATTR{idVendor}==”18d1″, ATTR{idProduct}==”4e30″, MODE=”0600″, OWNER=”<username>” # adb protocol on panda (PandaBoard) SUBSYSTEM==”usb”, ATTR{idVendor}==”0451″, ATTR{idProduct}==”d101″, MODE=”0600″, OWNER=”<username>” # fastboot protocol on panda (PandaBoard) SUBSYSTEM==”usb”, ATTR{idVendor}==”0451″, ATTR{idProduct}==”d022″, MODE=”0600″, OWNER=”<username>”
+     
+     
+     
+Step 6: Installing Android-SDK
+     
+    download the zipped package from this location:
+    http://developer.android.com/sdk/index.html
+     
+    copy the package to the location of your choice.  I suggest in your home folder but please note where you installed it because you will need it later.
+     
+    mine is in this directory:
+    /home/primedirective/code/android-sdk-linux/tools/android
+     
+     
+    now run the SDK so you can download the API you need to build. you can do this via terminal or you can just open a file browser.
+     
+     
+     
+Step 7: Enjoy a cold frosty beverage.  Ahhhh-- Intermission.
+     
+Step 8: Installing Repo
+     
+    cd into your home directory in terminal:
+    mkdir ~/bin
+    PATH=~/bin:$PATH
+    curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
+    chmod a+x ~/bin/repo
+     
+     
+     
+Step 9:  Initializing the manifest/getting the source
+     
+    cd into the folder that you'd like the source to download to.  The sync is huge and will take a long time but if it errors out it will pick up roughly where it left off.  Also, you will notice the files don't appear until after the sync is complete.  That is because they go to a magical hidden location first in case you screw up something royally like delete an entire build directory then repo copy's the files back w/o having to download them all again.
+ 
+run "repo init -u https://github.com/frap129/android.git -b kk && repo sync -f -j8"
+ 
+Step 10: Building the ROM: The Simple method
+ 
+Build Graphene with the following command
+ 
+"bash build.sh {options} {device}"
+Use the following as options...
+ 
+Options:
+-c# Cleanin options before build:
+        c1 - make clean
+        c2 - make dirty
+        c3 - make magic (doesnt alwasy work)
+        c4 - make kernelclean (dont really need this)
+-d  Use dex optimizations
+-i  Static Initlogo
+-j# Set jobs
+-s  Sync before build
+-p  Build using pipe
+-v  Verbose build output
+Example: "bash build.sh -c3 -p -j18 d2lte"
+ 
+Step 11: Building ROM the real way
+Inside of your source folder, run ". build/envsetup.sh" Then run "lunch carbon_{device}-userdebug"
+To begin compiling, run "make carbon -j{opt-jobs}" with opt-jobs being the output of "grep -c processor /proc/cpuinfo"
+ 
+Remember to "make clean && rm -rf ~/.ccache" every once in a while and after doing any changes.
 </section>
 </div>
 <div id="goals-goals-2">
