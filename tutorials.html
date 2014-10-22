@@ -155,6 +155,7 @@
 <a href="https://github.com/GrapheneROM/android">GitHub</a>
 <a href="https://github.com/GrapheneROM/android">Developer Tutorials</a>
 <a href="https://github.com/GrapheneROM/android">How You Can Help</a>
+<a href="./thanks.html">A Special Thank You</a>
 </dd></div></div>
 </dl>
 </nav>
@@ -203,61 +204,46 @@ Step 1:
 <br>    
 <br>    sudo apt-get update
 <br>    sudo apt-get upgrade</p>
-   
-     
-     
+<br>   
+<br>     
 Step 2: Oracle Java SE JDK version 6.XX
-    The build environment:
-    The first part of setting up a build environment is installing the correct java package.  with ubuntu/mint openJDK is included and the android build process set this as incompatible.  I modified our build process to except building with openJDK which would be acceptable for testing purposes only but not for publishing anything.
+<br>    The build environment:
+<br>    The first part of setting up a build environment is installing the correct java package.  with ubuntu/mint openJDK is included and the android build process set this as incompatible.  I modified our build process to except building with openJDK which would be acceptable for testing purposes only but not for publishing anything.
+<br>     
+<br>    You will need oracle JDK 6.  get the latest version here:
+<br>    http://www.webupd8.org/2012/11/oracle-sun-java-6-installer-available.html
+<br>    scroll down to java SE 6 update ___ fill in the blank for latest.
+<br>    download the latest 64-bit version for ubuntu.
+<br>     
+<br>run these commands to install:  
+<br>    (notice 6uXX and 1.6.0_XX means 6u37 or 1.6.0_37 if that's the version you downloaded)
      
-    You will need oracle JDK 6.  get the latest version here:
-    http://www.webupd8.org/2012/11/oracle-sun-java-6-installer-available.html
-    scroll down to java SE 6 update ___ fill in the blank for latest.
-    download the latest 64-bit version for ubuntu.
+<br>    sudo chmod a+x ~/Downloads/jdk-6uXX-linux-x64.bin
+<br>    sudo cp ~/Downloads/jdk-6u30-linux-x64.bin /usr/lib
+<br>    cd /usr/lib
+<br>    sudo ./jdk-6uXX-linux-x64.bin
+<br>    sudo mv /usr/lib/jdk1.6.0_XX/ /usr/lib/jvm/
      
-run these commands to install:  
-    (notice 6uXX and 1.6.0_XX means 6u37 or 1.6.0_37 if that's the version you downloaded)
-     
-    sudo chmod a+x ~/Downloads/jdk-6uXX-linux-x64.bin
-    sudo cp ~/Downloads/jdk-6u30-linux-x64.bin /usr/lib
-    cd /usr/lib
-    sudo ./jdk-6uXX-linux-x64.bin
-    sudo mv /usr/lib/jdk1.6.0_XX/ /usr/lib/jvm/
-     
-now it's time to "switch" to oracle java:
-    run this command and see how many other versions of java are available for use. you will want to take note of the number on the left.  reenter the number that is in use for now.
-       
-    sudo update-alternatives ––config java
-     
-    run this command and input one number greater than what was available in the previous command at the end of the string. you will need to change the XX again to the version number you downloaded. notice i have placed a 2 at the end becuase open JDK was already installed.
-   
-    cd into /usr/lib/jvm/jdk1.6.0_XX (the one you just installed)  
-    sudo update-alternatives ––install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_XX/jre/bin/java 2
-     
-Create symbolic links for the new java files (again XX is your downloaded version)
-     
-    cd /usr/bin
-    sudo ln -s /usr/lib/jvm/jdk1.6.0_XX/bin/javac
-    sudo ln -s /usr/lib/jvm/jdk1.6.0_XX/bin/jar
-    sudo ln -s /usr/lib/jvm/jdk1.6.0_XX/bin/javadoc
-     
-    If you run into problems with the symbolic links already being here you can just delete them and run the commands to recreate them
-     
-     
-     
-Step 3: GCC-Linaro compiler 4.7.2 - *note* this does not mean it's a "Linaro" build. I'm including this step in the advent we start using more forward tool chains.
-     
-    Type this command to see which version you are running:
-    gcc -v
-     
-    if you do not have GCC 4.7.2 (latest at the time of this writing)
-    sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-    sudo apt-get update
-    sudo apt-get install gcc-4.7
-    sudo update-alternatives --config gcc
-     
-     
-     
+<br>now it's time to "switch" to oracle java:
+<br>    run this command and see how many other versions of java are available for use. you will want to take note of the number on the left.  reenter the number that is in use for now.
+<br>       
+<br>    sudo update-alternatives ––config java
+<br>     
+<br>    run this command and input one number greater than what was available in the previous command at the end of the string. you will need to change the XX again to the version number you downloaded. notice i have placed a 2 at the end becuase open JDK was already installed.
+<br>   
+<br>    cd into /usr/lib/jvm/jdk1.6.0_XX (the one you just installed)  
+<br>    sudo update-alternatives ––install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_XX/jre/bin/java 2
+<br>     
+<br>Create symbolic links for the new java files (again XX is your downloaded version)
+<br>     
+<br>    cd /usr/bin
+<br>    sudo ln -s /usr/lib/jvm/jdk1.6.0_XX/bin/javac
+<br>    sudo ln -s /usr/lib/jvm/jdk1.6.0_XX/bin/jar
+<br>    sudo ln -s /usr/lib/jvm/jdk1.6.0_XX/bin/javadoc
+<br>     
+<br>    If you run into problems with the symbolic links already being here you can just delete them and run the commands to recreate them
+<br>     
+<br>
 Step 4: Installing necessary packages
      
     sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs x11proto-core-dev libx11-dev lib32readline-gplv2-dev lib32z-dev libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils xsltproc pngcrush
