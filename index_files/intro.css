@@ -1,3 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+.main {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: table;
+    background-color: #f9f9f9;
+}
+
 img {
   -webkit-animation-duration: 2s;
   -moz-animation-duration: 2s;
