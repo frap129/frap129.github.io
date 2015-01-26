@@ -10,17 +10,89 @@
     display: table;
     background-color: #222;
 }
-.innermain {
-    font: 12px/1 Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	color: #fff;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
+.fullpage-content {
+text-align: center;
+vertical-align: middle;
+white-space: pre-line;
+}
+.left {
+text-align:left;
+vertical-align:left;
+}
+body {
+padding: 100px 50px;
+font: 12px/1 Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #fff;
+}
+}
+h1 {
+font-size: 2.5em;
+font-weight: normal;
+margin-bottom: 10px;
+}
+p {
+text-transform: uppercase;
 }
 a {
-    text-decoration: none;
+text-decoration: none;
+color: #fff;
 }
-img {
-  -webkit-animation-duration: 2s;
-  -moz-animation-duration: 2s;
+a.screw_swag {
+display: inline-block;
+padding: 8px 12px;
+margin-top: 20px;
+color: #fff;
+border: 2px solid rgba( 255, 255, 255, 0.5 );
+text-decoration: none;
+margin-left: 15px;
+}
+a.screw_swag:hover {
+border-color: #fff;
+}
+.color-yellow {
+color: rgba( 255, 255, 255, 0.5 );
+}
+.avatar {
+width: 15%;
+border-radius: 50%;
+}
+.avatar-small {
+width: 5%;
+border-radius: 50%;
+}
+header {
+position: absolute;
+left: 40px;
+bottom: 20px;
+}
+footer {
+position: absolute;
+right: 40px;
+bottom: 20px;
+text-align: right;
+}
+@media only screen and (max-device-width: 480px) {
+.hide {
+visibility: hidden;
+}
+header {
+bottom: 60px;
+}
+.avatar {
+visibility: hidden;
+}
+}
+.social {
+margin-top: 12px;
+}
+.fa {
+display: table;
+text-decoration: none;
+color: white;
+padding-right: 50px;
+padding-left: 0px;
+}
+.fa-homepage {
+padding-right: 25px;
+padding-left: 25px;
 }
