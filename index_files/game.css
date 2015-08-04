@@ -1,0 +1,91 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+
+html,
+body {
+background-color: #222;
+}
+.fullpage-content {
+text-align: center;
+vertical-align: middle;
+}
+.left {
+text-align:left;
+vertical-align:left;
+}
+body {
+padding: 100px 50px;
+font: 12px/1 Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #fff;
+}
+}
+h1 {
+font-size: 2.5em;
+font-weight: normal;
+margin-bottom: 10px;
+}
+p {
+text-transform: uppercase;
+}
+a {
+text-decoration: none;
+color: #fff;
+}
+a.screw_swag {
+display: inline-block;
+padding: 8px 12px;
+margin-top: 40px;
+color: #fff;
+border: 2px solid rgba( 255, 255, 255, 0.5 );
+text-decoration: none;
+margin-left: 0px;
+}
+a.screw_swag:hover {
+border-color: #fff;
+}
+.color-yellow {
+color: rgba( 255, 255, 255, 0.5 );
+}
+.avatar {
+height: 10%;
+}
+.avatar-small {
+width: 5%;
+border-radius: 50%;
+}
+header {
+position: absolute;
+left: 40px;
+bottom: 20px;
+}
+footer {
+position: absolute;
+right: 40px;
+bottom: 20px;
+text-align: right;
+}
+@media only screen and (max-device-width: 480px) {
+.hide {
+visibility: hidden;
+}
+header {
+bottom: 60px;
+}
+.avatar {
+visibility: hidden;
+}
+}
+.social {
+margin-top: 12px;
+}
+.fa {
+display: table;
+text-decoration: none;
+color: white;
+padding-top: 10px;
+padding-right: 50px;
+padding-left: 0px;
+}
+.fa-homepage {
+padding-right: 25px;
+padding-left: 25px;
+}
