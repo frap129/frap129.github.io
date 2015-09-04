@@ -92,3 +92,10 @@ padding-left: 0px;
 padding-right: 25px;
 padding-left: 25px;
 }
+@font-face {
+    font-family: "Hero Light";
+    src: url(/index_files/hero-light.ttf) format("truetype");
+}
+p.herolight{ 
+    font-family: "Hero Light", Roboto Draft;
+}
