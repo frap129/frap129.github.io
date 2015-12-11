@@ -93,3 +93,10 @@ padding-left: 0px;
 padding-right: 25px;
 padding-left: 25px;
 }
+@font-face {
+    font-family: "Hero Light";
+    src: url(/index_files/hero-light.otf) format("opentype");
+}
+p.herolight{ 
+    font-family: "Hero Light", Roboto Draft;
+}
