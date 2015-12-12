@@ -68,6 +68,12 @@ position: absolute;
 left: 40px;
 bottom: 20px;
 }
+text-body {
+text-align: center;
+vertical-align: top;
+position: absolute;
+top: 20px;
+}
 footer {
 position: absolute;
 right: 40px;
