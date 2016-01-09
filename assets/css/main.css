@@ -3662,10 +3662,10 @@
 			-ms-transition: opacity 0.2s ease;
 			transition: opacity 0.2s ease;
 			height: inherit;
-			right: 45%;
+			text-align: center;
 			top: 50%;
 			line-height: inherit;
-			position: absolute;
+			position: relative;
 			top: 0;
 		}
 
