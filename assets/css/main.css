@@ -2851,6 +2851,19 @@
 			.features li:nth-last-child(2) {
 				border-bottom-left-radius: 3px;
 			}
+			
+		.features .featcard:hover:after {
+			content: " ";
+			z-index: 10;
+			display: block;
+			position: absolute;
+			height: 100%;
+			top: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0, 0, 0, 0.25);
+			color: #ccc;
+		}
 
 			@media screen and (max-width: 980px) {
 
