@@ -497,6 +497,11 @@
   align-self: flex-start;
 }
 
+#center {
+	margin: auto;
+	position: relative;
+}
+
 /* Grid */
 
 	.row {
