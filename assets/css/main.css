@@ -3835,10 +3835,10 @@
 			-webkit-transform: scale(1);
 			-ms-transform: scale(1);
 			transform: scale(1);
-			-moz-transition: -moz-transform 0.75s ease, opacity 0.75s ease;
-			-webkit-transition: -webkit-transform 0.75s ease, opacity 0.75s ease;
+			-moz-transition: -moz-transform 0.25s ease, opacity 0.25s ease;
+			-webkit-transition: -webkit-transform 0.25s ease, opacity 0.25s ease;
 			-ms-transition: -ms-transform 0.75s ease, opacity 0.75s ease;
-			transition: transform 0.75s ease, opacity 0.75s ease;
+			transition: transform 0.25s ease, opacity 0.25s ease;
 			display: inline-block;
 			font-size: 1.75em;
 			opacity: 1;
