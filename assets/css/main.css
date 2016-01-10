@@ -3610,6 +3610,17 @@
 					text-decoration: none;
 					text-transform: uppercase;
 				}
+	#menu .bottomlogo {
+		top: 85%;
+		display: inline-block;
+		position: relative;
+		vertical-align: bottom;
+	}
+		#menu .bottomlogo ul {
+			padding-top: 2em;
+			font-size: 0.6em;
+			white-space: nowrap;
+		}
 
 					@media screen and (max-width: 736px) {
 
