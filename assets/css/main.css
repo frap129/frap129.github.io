@@ -3611,9 +3611,9 @@
 					text-transform: uppercase;
 				}
 	#menu .bottomlogo {
-		top: 85%;
+		top: 92%;
 		display: inline-block;
-		position: relative;
+		position: absolute;
 		vertical-align: bottom;
 	}
 		#menu .bottomlogo ul {
