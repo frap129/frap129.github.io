@@ -3933,6 +3933,13 @@
 				position: absolute;
 				width: 1.5em;
 			}
+		
+		#banner .scrolly {
+			-moz-transform: translateY(0);
+			-webkit-transform: translateY(0);
+			-ms-transform: translateY(0);
+			transform: translateY(0);
+		}
 
 		#banner:after {
 			-moz-pointer-events: none;
