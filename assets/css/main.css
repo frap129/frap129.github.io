@@ -640,7 +640,7 @@
 		-ms-transition: opacity 1s ease, -ms-transform 1s ease;
 		transition: opacity 1s ease, transform 1s ease;
 		padding: 4.5em 3em 3em 3em ;
-		background: #212121;
+		background: #292929;
 		border-radius: 8px;
 		cursor: default;
 		max-width: 100%;
@@ -648,6 +648,7 @@
 		position: relative;
 		text-align: center;
 		width: 27em;
+		box-shadow: 5px 5px 5px #1A1A1A;
 	}
 
 		#main .avatar {
@@ -660,7 +661,7 @@
 				display: block;
 				margin: 0 auto;
 				border-radius: 100%;
-				box-shadow: 0 0 0 1.5em #212121;
+				box-shadow: 0 0 0 1.5em #292929;
 			}
 
 		@media screen and (max-width: 480px) {
